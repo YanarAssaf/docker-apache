@@ -10,6 +10,8 @@ RUN cd /srv/httpd-2.4.38 && ./configure --enable-ssl  --enable-so --with-mpm=eve
 RUN cd /srv/httpd-2.4.38 && make && make install
 RUN useradd apache
 RUN echo 'pathmunge /usr/local/apache2/bin' > /etc/profile.d/httpd.sh
+RUN ln -sf /dev/stdout /var/log/httpd/access.log
+RUN ln -sf /dev/stderr /var/log/httpd/error.log
 
 EXPOSE 80
 
